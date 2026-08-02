@@ -9,7 +9,7 @@ from urllib.parse import urlparse
 class OpenRouterConfig:
     api_base_url: str = "https://openrouter.ai/api/v1"
     api_key: str = ""
-    model: str = "nvidia/nemotron-nano-9b-v2:free"
+    model: str = "nvidia/nemotron-3-super-120b-a12b:free"
     model_context_tokens: int = 128_000
     max_output_tokens: int = 4_000
     connect_timeout_seconds: float = 10.0

@@ -75,7 +75,7 @@ A provider implements `ReviewProvider.review(ReviewChunk) -> ProviderResult` and
 
 ## OpenRouter Provider
 
-The MVP model is explicitly configured as `nvidia/nemotron-nano-9b-v2:free`. The adapter rejects `openrouter/free`, requires an explicit `:free` primary model, and never chooses a paid model implicitly. Change models through `OPENROUTER_MODEL`; approved model fallbacks may be listed explicitly in `OPENROUTER_APPROVED_FALLBACK_MODELS`. Changing providers requires only another `ReviewProvider` adapter and selection in `provider_factory.py`; diff processing and aggregation do not change.
+The MVP model is explicitly configured as `nvidia/nemotron-3-super-120b-a12b:free`. The adapter rejects `openrouter/free`, requires an explicit `:free` primary model, and never chooses a paid model implicitly. Change models through `OPENROUTER_MODEL`; approved model fallbacks may be listed explicitly in `OPENROUTER_APPROVED_FALLBACK_MODELS`. Changing providers requires only another `ReviewProvider` adapter and selection in `provider_factory.py`; diff processing and aggregation do not change.
 
 Required configuration:
 
@@ -83,7 +83,7 @@ Required configuration:
 | --- | --- | --- |
 | `OPENROUTER_API_KEY` | none | Required API credential; never logged |
 | `OPENROUTER_API_BASE_URL` | `https://openrouter.ai/api/v1` | HTTPS API root |
-| `OPENROUTER_MODEL` | `nvidia/nemotron-nano-9b-v2:free` | Exact approved free model |
+| `OPENROUTER_MODEL` | `nvidia/nemotron-3-super-120b-a12b:free` | Exact approved free model |
 | `OPENROUTER_MODEL_CONTEXT_TOKENS` | `128000` | Validated model context window |
 | `OPENROUTER_MAX_OUTPUT_TOKENS` | `4000` | Per-response output ceiling |
 | `OPENROUTER_CONNECT_TIMEOUT_SECONDS` | `10` | Connection timeout |

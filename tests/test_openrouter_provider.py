@@ -38,7 +38,7 @@ def endpoint_response(parameters=None, **overrides):
         "status": 0,
     }
     endpoint.update(overrides)
-    return {"data": {"id": "nvidia/nemotron-nano-9b-v2:free", "endpoints": [endpoint]}}
+    return {"data": {"id": "nvidia/nemotron-3-super-120b-a12b:free", "endpoints": [endpoint]}}
 
 
 def review_response(findings=None, summary="No material issues.", risk="INFO", output_tokens=10):
@@ -280,7 +280,7 @@ async def test_request_enforces_schema_and_privacy_controls():
     provider, client = await prepared_provider(handler)
     assert (await provider.review(chunk())).valid
     await client.aclose()
-    assert captured["model"] == "nvidia/nemotron-nano-9b-v2:free"
+    assert captured["model"] == "nvidia/nemotron-3-super-120b-a12b:free"
     assert captured["response_format"]["type"] == "json_schema"
     assert captured["response_format"]["json_schema"]["strict"] is True
     assert captured["provider"] == {
