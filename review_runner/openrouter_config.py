@@ -25,7 +25,7 @@ class OpenRouterConfig:
     max_response_bytes: int = 256_000
     require_structured_outputs: bool = True
     require_zero_data_retention: bool = False
-    deny_data_collection: bool = True
+    deny_data_collection: bool = False
     allowed_providers: tuple[str, ...] = ()
     approved_fallback_models: tuple[str, ...] = ()
     app_url: str | None = None

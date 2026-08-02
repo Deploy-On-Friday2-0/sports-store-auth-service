@@ -287,7 +287,7 @@ async def test_request_enforces_schema_and_privacy_controls():
     assert captured["response_format"]["json_schema"]["strict"] is True
     assert captured["provider"] == {
         "require_parameters": True,
-        "data_collection": "deny",
+        "data_collection": "allow",
         "zdr": False,
         "allow_fallbacks": True,
     }
