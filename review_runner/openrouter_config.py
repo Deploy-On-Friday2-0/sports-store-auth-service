@@ -24,7 +24,7 @@ class OpenRouterConfig:
     max_execution_seconds: float = 300.0
     max_response_bytes: int = 256_000
     require_structured_outputs: bool = True
-    require_zero_data_retention: bool = True
+    require_zero_data_retention: bool = False
     deny_data_collection: bool = True
     allowed_providers: tuple[str, ...] = ()
     approved_fallback_models: tuple[str, ...] = ()

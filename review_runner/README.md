@@ -98,13 +98,13 @@ Required configuration:
 | `OPENROUTER_MAX_EXECUTION_SECONDS` | `300` | Provider run deadline |
 | `OPENROUTER_MAX_RESPONSE_BYTES` | `256000` | Response parsing limit |
 | `OPENROUTER_REQUIRE_STRUCTURED_OUTPUTS` | `true` | Require native JSON Schema support |
-| `OPENROUTER_REQUIRE_ZERO_DATA_RETENTION` | `true` | Route only to ZDR endpoints |
+| `OPENROUTER_REQUIRE_ZERO_DATA_RETENTION` | `false` | Opt in to routing only through ZDR endpoints |
 | `OPENROUTER_DENY_DATA_COLLECTION` | `true` | Exclude collecting/training routes |
 | `OPENROUTER_ALLOWED_PROVIDERS` | empty | Optional comma-separated route allowlist |
 | `OPENROUTER_APP_URL` | empty | Optional `HTTP-Referer` attribution |
 | `OPENROUTER_APP_TITLE` | empty | Optional application title |
 
-Before reviewing content, the adapter queries the exact model's endpoints and verifies availability, runner/model context compatibility, maximum output size, route status, and native `response_format` plus `structured_outputs` parameters. Completion requests additionally set `provider.require_parameters`, `provider.data_collection`, and `provider.zdr`. If OpenRouter cannot satisfy privacy routing, the review fails open; controls are never weakened and another model is never selected silently.
+Before reviewing content, the adapter queries the exact model's endpoints and verifies availability, runner/model context compatibility, maximum output size, route status, and native `response_format` plus `structured_outputs` parameters. Completion requests additionally set `provider.require_parameters`, deny provider data collection, and pass the configured `provider.zdr` value. ZDR is disabled by default to support the selected free model, so a provider may retain prompts under its endpoint policy even though training/data-collection routes remain denied. Set `OPENROUTER_REQUIRE_ZERO_DATA_RETENTION=true` when retention is prohibited; unavailable privacy-compatible routing then fails open rather than weakening the configured control.
 
 The system prompt limits analysis to the supplied changes and declares all metadata and diff content untrusted. The user message separately delimits trusted metadata and the sanitized diff. No tools or plugins are supplied. Source instructions cannot change the schema, request secrets, suppress findings, or expand review scope.
 

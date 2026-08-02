@@ -243,7 +243,9 @@ async def test_model_unavailable_preflight():
 async def test_privacy_incompatible_route_is_rejected_before_review():
     metadata = endpoint_response(supports_zdr=False)
     client = client_for(lambda request: httpx.Response(200, json=metadata))
-    provider = OpenRouterProvider(provider_config(), client=client)
+    provider = OpenRouterProvider(
+        provider_config(require_zero_data_retention=True), client=client
+    )
     failure = await provider.prepare(context())
     await client.aclose()
     assert failure.error_category == ProviderErrorCategory.PRIVACY_REQUIREMENT_UNAVAILABLE.value
@@ -286,7 +288,7 @@ async def test_request_enforces_schema_and_privacy_controls():
     assert captured["provider"] == {
         "require_parameters": True,
         "data_collection": "deny",
-        "zdr": True,
+        "zdr": False,
         "allow_fallbacks": True,
     }
 
